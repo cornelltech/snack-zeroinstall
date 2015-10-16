@@ -1,0 +1,35 @@
+%cd ~/batchembedding/snack-era/
+from sklearn.cluster import KMeans
+from sklearn.manifold import TSNE
+from sklearn.metrics import adjusted_rand_score
+import os
+
+import datasets
+reload(datasets)
+
+import category_discovery as cd
+reload(cd)
+
+dset_cub = datasets.load("cubirds crophead nin-finetune 2015-04-19")
+dset_birdlets = datasets.load("cubirdlets crophead nin-finetune 2015-03-24")
+
+dset_cub.images
+dset_cub.ftrs.shape
+import os
+# Save images
+images = np.array([os.path.join(
+                       os.path.basename(os.path.dirname(i)),
+                       os.path.basename(i))
+                   for i in dset_cub.images])
+classes = np.array([int(pth.split(".")[0])
+                    for pth in images])
+
+# Birdlets
+birdlets_subset = {151, 152, 153, 154, 155, 156, 157, 36, 187, 188, 189, 190, 191, 192} 
+birdlets_mask = np.array([c in birdlets_subset for c in classes])
+ftrs = dset_cub.ftrs.copy()
+
+%cd ~/batchembedding/snack-era/snack-zeroinstall/
+np.save("image-urls.npy", images)
+np.save("image-classes.npy", classes)
+np.save("image-features.npy", ftrs)

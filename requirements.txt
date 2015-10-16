@@ -1,0 +1,3 @@
+bokeh
+simplejson
+bokeh_image_explore
