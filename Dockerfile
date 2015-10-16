@@ -4,7 +4,7 @@ MAINTAINER Michael Wilber <mwilber@mjwilber.org>
 
 USER main
 
-RUN /home/main/anaconda/bin/pip install --upgrade setuptools pip
+RUN /home/main/anaconda/bin/pip install --upgrade setuptools pip || true
 
 RUN /home/main/anaconda/bin/pip install bokeh==0.10.0
 RUN /home/main/anaconda/bin/pip install simplejson
