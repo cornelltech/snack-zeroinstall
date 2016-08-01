@@ -1,4 +1,4 @@
-FROM andrewosh/binder-base
+FROM andrewosh/binder-base:1.0
 
 MAINTAINER Michael Wilber <mwilber@mjwilber.org>
 
